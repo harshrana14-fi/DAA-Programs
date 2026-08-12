@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 
+// Bubble Sort
+// Time Complexity:
+// Best Case    : O(n)     -> array is already sorted
+// Average Case : O(n^2)   -> nested comparisons
+// Worst Case   : O(n^2)   -> maximum comparisons and swaps
+// Space        : O(1)
+
 void bubbleSort(int arr[], int n)
 {
     for(int i = 0; i < n - 1; i++)

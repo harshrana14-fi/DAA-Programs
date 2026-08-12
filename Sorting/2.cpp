@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
 
+// Insertion Sort
+// Best Case    : O(n)     -> array is already sorted
+// Average Case : O(n^2)
+// Worst Case   : O(n^2)   -> elements are in reverse order
+// Space        : O(1)
+
 void insertionSort(int arr[], int n)
 {
     for(int i = 1; i < n; i++)

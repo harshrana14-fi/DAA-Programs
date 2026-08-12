@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
 
+// Merge Sort
+// Best Case    : O(n log n)
+// Average Case : O(n log n)
+// Worst Case   : O(n log n)
+// Space        : O(n)
+// Analysis: Array is divided into log n levels,
+// and merging at each level takes O(n).
+
 void merge(int arr[], int l, int m, int r)
 {
     int n1 = m - l + 1;

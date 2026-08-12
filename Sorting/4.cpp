@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
 
+// Quick Sort
+// Best Case    : O(n log n) -> balanced partitions
+// Average Case : O(n log n)
+// Worst Case   : O(n^2)     -> highly unbalanced partitions
+// Space        : O(log n) average
+
 int partition(int arr[], int low, int high)
 {
     int pivot = arr[high];
