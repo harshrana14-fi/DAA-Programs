@@ -1,49 +1,43 @@
 #include <iostream>
 using namespace std;
 
-// Insertion Sort
-// Best Case    : O(n)     -> array is already sorted
-// Average Case : O(n^2)
-// Worst Case   : O(n^2)   -> elements are in reverse order
-// Space        : O(1)
+void quickSort(int a[], int l, int r) {
+    if (l >= r) return;
 
-void insertionSort(int arr[], int n)
-{
-    for(int i = 1; i < n; i++)
-    {
-        int key = arr[i];
-        int j = i - 1;
+    int i = l, j = r;
+    int pivot = a[(l + r) / 2];
 
-        while(j >= 0 && arr[j] > key)
-        {
-            arr[j + 1] = arr[j];
+    while (i <= j) {
+        while (a[i] < pivot) i++;
+        while (a[j] > pivot) j--;
+
+        if (i <= j) {
+            swap(a[i], a[j]);
+            i++;
             j--;
         }
-
-        arr[j + 1] = key;
     }
+
+    quickSort(a, l, j);
+    quickSort(a, i, r);
 }
 
-int main()
-{
-    cout << "Name : Harsh Jatoliya" << endl;
-    cout << "Enrollment No. : 13114803124" << endl << endl;
+int main() {
+    int a[] = {38, 12, 45, 7, 23, 89, 4, 56, 31, 18,
+               72, 9, 64, 27, 51, 3, 80, 16, 42, 35};
 
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
+    int n = sizeof(a) / sizeof(a[0]);
 
-    int arr[n];
+    cout << "Name: Harsh Jatoliya\n";
+    cout << "Enrollment No.: 13114803124\n\n";
 
-    cout << "Enter elements:\n";
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
+    cout << "Original Array: ";
+    for (int x : a) cout << x << " ";
 
-    insertionSort(arr, n);
+    quickSort(a, 0, n - 1);
 
-    cout << "Sorted Array using Insertion Sort: ";
-    for(int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+    cout << "\nSorted Array using Quick Sort: ";
+    for (int x : a) cout << x << " ";
 
     return 0;
 }

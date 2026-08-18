@@ -1,67 +1,45 @@
-#include <stdio.h>
+#include <iostream>
+using namespace std;
 
-//Heap Sort
-// Best Case	: O(n log n)
-// Average Case	: O(n log n)
-// Worst Case	: O(n log n)
-// Space	    : O(1) auxiliary
-
-void swap(int *x, int *y)
-{
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
-void heapify(int a[], int n, int i)
-{
+void heapify(int a[], int n, int i) {
     int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
 
-    if (left < n && a[left] > a[largest])
-        largest = left;
+    if (l < n && a[l] > a[largest])
+        largest = l;
 
-    if (right < n && a[right] > a[largest])
-        largest = right;
+    if (r < n && a[r] > a[largest])
+        largest = r;
 
-    if (largest != i)
-    {
-        swap(&a[i], &a[largest]);
+    if (largest != i) {
+        swap(a[i], a[largest]);
         heapify(a, n, largest);
     }
 }
 
-void heapSort(int a[], int n)
-{
-    int i;
+int main() {
+    int a[] = {38, 12, 45, 7, 23, 89, 4, 56, 31, 18,
+               72, 9, 64, 27, 51, 3, 80, 16, 42, 35};
 
-    for (i = n / 2 - 1; i >= 0; i--)
+    int n = sizeof(a) / sizeof(a[0]);
+
+    cout << "Name: Harsh Jatoliya\n";
+    cout << "Enrollment No.: 13114803124\n\n";
+
+    cout << "Original Array: ";
+    for (int x : a) cout << x << " ";
+
+    for (int i = n / 2 - 1; i >= 0; i--)
         heapify(a, n, i);
 
-    for (i = n - 1; i > 0; i--)
-    {
-        swap(&a[0], &a[i]);
+    for (int i = n - 1; i > 0; i--) {
+        swap(a[0], a[i]);
         heapify(a, i, 0);
     }
-}
 
-int main()
-{
-    int a[100], n, i;
-
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-
-    printf("Enter elements:\n");
-    for (i = 0; i < n; i++)
-        scanf("%d", &a[i]);
-
-    heapSort(a, n);
-
-    printf("Sorted array:\n");
-    for (i = 0; i < n; i++)
-        printf("%d ", a[i]);
+    cout << "\nSorted Array using Heap Sort: ";
+    for (int x : a) cout << x << " ";
 
     return 0;
 }

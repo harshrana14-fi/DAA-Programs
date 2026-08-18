@@ -1,77 +1,33 @@
 #include <iostream>
 using namespace std;
 
-// Merge Sort
-// Best Case    : O(n log n)
-// Average Case : O(n log n)
-// Worst Case   : O(n log n)
-// Space        : O(n)
-// Analysis: Array is divided into log n levels,
-// and merging at each level takes O(n).
+int main() {
+    int a[] = {38, 12, 45, 7, 23, 89, 4, 56, 31, 18,
+               72, 9, 64, 27, 51, 3, 80, 16, 42, 35};
 
-void merge(int arr[], int l, int m, int r)
-{
-    int n1 = m - l + 1;
-    int n2 = r - m;
+    int n = sizeof(a) / sizeof(a[0]);
 
-    int L[n1], R[n2];
+    cout << "Name: Harsh Jatoliya\n";
+    cout << "Enrollment No.: 13114803124\n\n";
 
-    for(int i = 0; i < n1; i++)
-        L[i] = arr[l + i];
+    cout << "Original Array: ";
+    for (int x : a) cout << x << " ";
 
-    for(int j = 0; j < n2; j++)
-        R[j] = arr[m + 1 + j];
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
 
-    int i = 0, j = 0, k = l;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (a[j] > a[j + 1]) {
+                swap(a[j], a[j + 1]);
+                swapped = true;
+            }
+        }
 
-    while(i < n1 && j < n2)
-    {
-        if(L[i] <= R[j])
-            arr[k++] = L[i++];
-        else
-            arr[k++] = R[j++];
+        if (!swapped) break;
     }
 
-    while(i < n1)
-        arr[k++] = L[i++];
-
-    while(j < n2)
-        arr[k++] = R[j++];
-}
-
-void mergeSort(int arr[], int l, int r)
-{
-    if(l < r)
-    {
-        int m = (l + r) / 2;
-
-        mergeSort(arr, l, m);
-        mergeSort(arr, m + 1, r);
-
-        merge(arr, l, m, r);
-    }
-}
-
-int main()
-{
-    cout << "Name : Harsh Jatoliya" << endl;
-    cout << "Enrollment No. : 13114803124" << endl << endl;
-
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
-
-    int arr[n];
-
-    cout << "Enter elements:\n";
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
-
-    mergeSort(arr, 0, n - 1);
-
-    cout << "Sorted Array using Merge Sort: ";
-    for(int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+    cout << "\nSorted Array using Bubble Sort: ";
+    for (int x : a) cout << x << " ";
 
     return 0;
 }

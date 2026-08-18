@@ -1,62 +1,30 @@
 #include <iostream>
 using namespace std;
 
-// Quick Sort
-// Best Case    : O(n log n) -> balanced partitions
-// Average Case : O(n log n)
-// Worst Case   : O(n^2)     -> highly unbalanced partitions
-// Space        : O(log n) average
+int main() {
+    int a[] = {38, 12, 45, 7, 23, 89, 4, 56, 31, 18,
+               72, 9, 64, 27, 51, 3, 80, 16, 42, 35};
 
-int partition(int arr[], int low, int high)
-{
-    int pivot = arr[high];
-    int i = low - 1;
+    int n = sizeof(a) / sizeof(a[0]);
 
-    for(int j = low; j < high; j++)
-    {
-        if(arr[j] < pivot)
-        {
-            i++;
-            swap(arr[i], arr[j]);
-        }
+    cout << "Name: Harsh Jatoliya\n";
+    cout << "Enrollment No.: 13114803124\n\n";
+
+    cout << "Original Array: ";
+    for (int x : a) cout << x << " ";
+
+    for (int i = 0; i < n - 1; i++) {
+        int min = i;
+
+        for (int j = i + 1; j < n; j++)
+            if (a[j] < a[min])
+                min = j;
+
+        swap(a[i], a[min]);
     }
 
-    swap(arr[i + 1], arr[high]);
-
-    return i + 1;
-}
-
-void quickSort(int arr[], int low, int high)
-{
-    if(low < high)
-    {
-        int pi = partition(arr, low, high);
-
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-}
-
-int main()
-{
-    cout << "Name : Harsh Jatoliya" << endl;
-    cout << "Enrollment No. : 13114803124" << endl << endl;
-
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
-
-    int arr[n];
-
-    cout << "Enter elements:\n";
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
-
-    quickSort(arr, 0, n - 1);
-
-    cout << "Sorted Array: ";
-    for(int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+    cout << "\nSorted Array using Selection Sort: ";
+    for (int x : a) cout << x << " ";
 
     return 0;
 }

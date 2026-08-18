@@ -1,45 +1,44 @@
 #include <iostream>
 using namespace std;
 
-// Bubble Sort
-// Time Complexity:
-// Best Case    : O(n)     -> array is already sorted
-// Average Case : O(n^2)   -> nested comparisons
-// Worst Case   : O(n^2)   -> maximum comparisons and swaps
-// Space        : O(1)
+void merge(int a[], int l, int m, int r) {
+    int t[20], i = l, j = m + 1, k = 0;
 
-void bubbleSort(int arr[], int n)
-{
-    for(int i = 0; i < n - 1; i++)
-    {
-        for(int j = 0; j < n - i - 1; j++)
-        {
-            if(arr[j] > arr[j + 1])
-            {
-                swap(arr[j], arr[j + 1]);
-            }
-        }
+    while (i <= m && j <= r)
+        t[k++] = (a[i] < a[j]) ? a[i++] : a[j++];
+
+    while (i <= m) t[k++] = a[i++];
+    while (j <= r) t[k++] = a[j++];
+
+    for (i = l, k = 0; i <= r; i++)
+        a[i] = t[k++];
+}
+
+void mergeSort(int a[], int l, int r) {
+    if (l < r) {
+        int m = (l + r) / 2;
+        mergeSort(a, l, m);
+        mergeSort(a, m + 1, r);
+        merge(a, l, m, r);
     }
 }
-int main()
-{
-    cout << "Name : Harsh Jatoliya" << endl;
-    cout << "Enrollment No. : 13114803124" << endl << endl;
 
-    int n;
-    cout << "Enter number of elements: ";
-    cin >> n;
+int main() {
+    int a[] = {38, 12, 45, 7, 23, 89, 4, 56, 31, 18,
+               72, 9, 64, 27, 51, 3, 80, 16, 42, 35};
 
-    int arr[n];
-    cout << "Enter elements:\n";
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
+    int n = sizeof(a) / sizeof(a[0]);
 
-    bubbleSort(arr, n);
+    cout << "Name: Harsh Jatoliya\n";
+    cout << "Enrollment No.: 13114803124\n\n";
 
-    cout << "Sorted Array using Bubble Sort: ";
-    for(int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+    cout << "Original Array: ";
+    for (int x : a) cout << x << " ";
+
+    mergeSort(a, 0, n - 1);
+
+    cout << "\nSorted Array using Merge Sort: ";
+    for (int x : a) cout << x << " ";
 
     return 0;
 }
