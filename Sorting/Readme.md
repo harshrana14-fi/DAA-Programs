@@ -38,6 +38,13 @@ This program implements the following sorting algorithms:
 - Average Space Complexity: O(log n)
 - Worst Case Space Complexity: O(n)
 
+### 5. Heap Sort
+
+- Best Case: O(n log n)
+- Average Case: O(n log n)
+- Worst Case: O(n log n)
+- Space	    : O(1) auxiliary
+
 ## Comparison Table
 
 | Algorithm | Best Case | Average Case | Worst Case | Space |
