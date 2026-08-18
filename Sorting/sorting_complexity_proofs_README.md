@@ -1,16 +1,5 @@
 # Sorting Algorithms --- Complexity Proofs
 
-This README explains how to prove the time complexity of each sorting
-algorithm directly from the code. The main idea is:
-
-> **Code → identify loops/recursive calls → count operations → form T(n)
-> → simplify using Big-O.**
-
-You do not need to prove every individual statement. Focus on the loops,
-comparisons, swaps, and recursive calls that dominate the running time.
-
-------------------------------------------------------------------------
-
 # 1. Merge Sort --- Complexity Proof
 
 ## Important Code
@@ -34,8 +23,7 @@ The `merge()` function processes all elements in the current range.
 ## Step 1: Divide
 
 The array of size `n` is divided into two parts:
-
-\[ n `\rightarrow `{=tex}`\frac{n}{2}`{=tex} + `\frac{n}{2}`{=tex} \]
+n → n/2 + n/2
 
 There are two recursive calls:
 
@@ -45,7 +33,6 @@ mergeSort(a, mid + 1, high);
 ```
 
 Therefore, the recursive part contributes:
-
 \[ 2T(n/2) \]
 
 ## Step 2: Merge
@@ -54,13 +41,11 @@ The `merge()` function compares and copies the elements. At each level,
 approximately `n` elements are processed.
 
 Therefore, merging takes:
-
 \[ O(n) \]
 
 ## Step 3: Recurrence
 
 Hence:
-
 \[ T(n)=2T(n/2)+cn \]
 
 Using the recurrence-tree method:
@@ -75,28 +60,19 @@ Using the recurrence-tree method:
   log₂n        n
 
 Number of levels:
-
-\[ `\log`{=tex}\_2 n \]
+log₂ n
 
 Therefore:
-
-\[ T(n)=n`\log`{=tex}\_2n \]
+T(n) = n × log₂ n
 
 Hence:
-
-\[ `\boxed{T(n)=O(n\log n)}`{=tex} \]
+T(n) = O(n log n)
 
 ## Final Result
 
 -   **Best Case:** O(n log n)
 -   **Average Case:** O(n log n)
 -   **Worst Case:** O(n log n)
-
-### What to explain in viva
-
-> Merge Sort always divides the array into two halves, and merging takes
-> linear time at every level. There are log n levels, so the total
-> complexity is n × log n = O(n log n).
 
 ------------------------------------------------------------------------
 
@@ -128,7 +104,6 @@ int partition(int a[], int low, int high)
 The `for` loop executes approximately `n - 1` times.
 
 Therefore, partitioning takes:
-
 \[ O(n) \]
 
 The final complexity depends on how the pivot divides the array.
@@ -136,41 +111,33 @@ The final complexity depends on how the pivot divides the array.
 ## Best/Average Case
 
 Suppose the pivot divides the array approximately equally:
-
 \[ T(n)=2T(n/2)+cn \]
 
 This is the same recurrence as Merge Sort.
 
 Therefore:
-
-\[ `\boxed{T(n)=O(n\log n)}`{=tex} \]
+T(n) = O(n log n)
 
 ## Worst Case
 
 Suppose the pivot is always the smallest or largest element.
 
 The partitions become:
-
 \[ 0+(n-1) \]
 
 Therefore:
-
 \[ T(n)=T(n-1)+cn \]
 
 Expanding:
-
 \[ T(n)=T(n-2)+c(n-1)+cn \]
 
 Eventually:
-
-\[ T(n)=c(1+2+3+`\cdots`{=tex}+n) \]
+T(n) = c(1 + 2 + 3 + ... + n)
 
 We know:
-
-\[ 1+2+3+`\cdots`{=tex}+n=`\frac{n(n+1)}{2}`{=tex} \]
+1 + 2 + 3 + ... + n = n(n + 1) / 2
 
 Therefore:
-
 \[ T(n)=O(n\^2) \]
 
 ## Final Result
@@ -227,24 +194,19 @@ The inner loop executes:
 -   `1` time in the last pass
 
 Total comparisons:
-
-\[ (n-1)+(n-2)+(n-3)+`\cdots`{=tex}+1 \]
+(n - 1) + (n - 2) + (n - 3) + ... + 1
 
 This is:
-
-\[ `\frac{n(n-1)}{2}`{=tex} \]
+n(n - 1) / 2
 
 Therefore:
-
-\[ T(n)=`\frac{n(n-1)}{2}`{=tex} \]
+T(n) = n(n - 1) / 2
 
 Expanding:
-
-\[ T(n)=`\frac{n^2-n}{2}`{=tex} \]
+T(n) = (n² - n) / 2
 
 Ignoring constants and lower-order terms:
-
-\[ `\boxed{T(n)=O(n^2)}`{=tex} \]
+T(n) = O(n²)
 
 ## Best Case
 
@@ -264,8 +226,7 @@ The first pass performs approximately:
 comparisons.
 
 Therefore:
-
-\[ `\boxed{T(n)=O(n)}`{=tex} \]
+T(n)=O(n)
 
 ## Final Result
 
@@ -307,26 +268,20 @@ for (i = 0; i < n - 1; i++)
 ```
 
 The inner loop executes:
-
-\[ n-1, n-2, n-3,`\ldots`{=tex},1 \]
+(n - 1), (n - 2), (n - 3), ..., 1
 
 times.
 
 Therefore total comparisons are:
-
-\[ (n-1)+(n-2)+`\cdots`{=tex}+1 \]
-
-\[ =`\frac{n(n-1)}{2}`{=tex} \]
+(n - 1) + (n - 2) + ... + 1
+= n(n - 1) / 2
 
 Thus:
-
-\[ T(n)=`\frac{n(n-1)}{2}`{=tex} \]
-
-\[ T(n)=`\frac{n^2-n}{2}`{=tex} \]
+T(n) = n(n - 1) / 2
+T(n) = (n² - n) / 2
 
 Ignoring constants and lower-order terms:
-
-\[ `\boxed{T(n)=O(n^2)}`{=tex} \]
+T(n) = O(n²)
 
 ## Best Case
 
@@ -334,8 +289,7 @@ Even if the array is already sorted, Selection Sort still searches for
 the minimum element in the remaining unsorted portion.
 
 Therefore:
-
-\[ `\boxed{T(n)=O(n^2)}`{=tex} \]
+T(n)=O(n^2)
 
 ## Final Result
 
@@ -343,11 +297,6 @@ Therefore:
 -   **Average Case:** O(n²)
 -   **Worst Case:** O(n²)
 
-### Important viva point
-
-Selection Sort performs almost the same number of comparisons regardless
-of the initial ordering of the array. Therefore, its best, average, and
-worst-case time complexity are all O(n²).
 
 ------------------------------------------------------------------------
 
@@ -378,8 +327,7 @@ for (i = n / 2 - 1; i >= 0; i--)
 ```
 
 The total complexity of building a heap is:
-
-\[ `\boxed{O(n)}`{=tex} \]
+O(n)
 
 > Important: Building a heap is O(n), not O(n log n).
 
@@ -398,24 +346,19 @@ heapify(a, i, 0);
 ```
 
 The height of a binary heap is:
-
-\[ O(`\log `{=tex}n) \]
+O(log n)
 
 Therefore, one `heapify()` operation takes:
-
-\[ O(`\log `{=tex}n) \]
+O(log n)
 
 It happens approximately `n` times:
-
-\[ n`\times `{=tex}O(`\log `{=tex}n)=O(n`\log `{=tex}n) \]
+n × O(log n) = O(n log n)
 
 ## Total Complexity
-
-\[ O(n)+O(n`\log `{=tex}n) \]
+O(n) + O(n log n)
 
 Since `n log n` dominates `n`:
-
-\[ `\boxed{T(n)=O(n\log n)}`{=tex} \]
+**T(n) = O(n log n)**
 
 ## Final Result
 
@@ -447,58 +390,11 @@ Since `n log n` dominates `n`:
   Sort        decreasing                                    
               loops                                         
 
-  Heap Sort   n heapify          O(n log n)      O(n log n)      O(n log n)
+ Heap Sort   n heapify          O(n log n)      O(n log n)      O(n log n)
               operations ×                                  
-              log n                                         
+              log n                                        
   -------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
-# How to Write the Complexity Proof in the Lab Record
 
-After every program, add a section named:
-
-## Complexity Analysis
-
-For example, for Bubble Sort:
-
-``` text
-Outer loop executes: n - 1 times
-
-Inner loop executions:
-(n - 1) + (n - 2) + ... + 1
-
-= n(n - 1) / 2
-= (n² - n) / 2
-
-Ignoring constants and lower-order terms:
-
-T(n) = O(n²)
-```
-
-Then write:
-
-``` text
-Best Case  : O(n)
-Average    : O(n²)
-Worst Case : O(n²)
-```
-
-This is much stronger than simply writing the final Big-O value because
-it shows exactly how the complexity was obtained from the code.
-
-------------------------------------------------------------------------
-
-# Key Idea to Remember
-
-> **Code → identify loops/recursive calls → count operations → form T(n)
-> → simplify using Big-O.**
-
-For sorting algorithms, focus mainly on:
-
--   Number of loop iterations
--   Number of comparisons
--   Number of swaps
--   Recursive calls
--   Work done by functions such as `merge()`, `partition()`, and
-    `heapify()`
