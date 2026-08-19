@@ -23,22 +23,53 @@ void mergeSort(int a[], int l, int r) {
     }
 }
 
-int main() {
-    int a[] = {38, 12, 45, 7, 23, 89, 4, 56, 31, 18,
-               72, 9, 64, 27, 51, 3, 80, 16, 42, 35};
+void printArray(int a[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+    cout << endl;
+}
 
-    int n = sizeof(a) / sizeof(a[0]);
+int main() {
+    int best[] = {12, 5, 19, 3, 15, 8, 1, 17, 10, 6,
+                  14, 2, 20, 7, 11, 4, 18, 9, 13, 16};
+
+    int worst[] = {20, 18, 15, 13, 11, 9, 7, 5, 3, 1,
+                   19, 17, 14, 12, 10, 8, 6, 4, 2, 16};
+
+    int n = 20;
 
     cout << "Name: Harsh Jatoliya\n";
-    cout << "Enrollment No.: 13114803124\n\n";
+    cout << "Enrollment No.: 13114803124\n";
 
+    cout << "\nBEST CASE\n";
     cout << "Original Array: ";
-    for (int x : a) cout << x << " ";
+    printArray(best, n);
 
-    mergeSort(a, 0, n - 1);
+    mergeSort(best, 0, n - 1);
 
-    cout << "\nSorted Array using Merge Sort: ";
-    for (int x : a) cout << x << " ";
+    cout << "Sorted Array:   ";
+    printArray(best, n);
+
+    cout << "\nComplexity Proof:\n";
+    cout << "Division levels = log2(n)\n";
+    cout << "Work per level = n\n";
+    cout << "T(n) = n * log2(n)\n";
+    cout << "Best Case = O(n log n)\n";
+
+    cout << "\nWORST CASE\n";
+    cout << "Original Array: ";
+    printArray(worst, n);
+
+    mergeSort(worst, 0, n - 1);
+
+    cout << "Sorted Array:   ";
+    printArray(worst, n);
+
+    cout << "\nComplexity Proof:\n";
+    cout << "Division levels = log2(n)\n";
+    cout << "Work per level = n\n";
+    cout << "T(n) = n * log2(n)\n";
+    cout << "Worst Case = O(n log n)\n";
 
     return 0;
 }
